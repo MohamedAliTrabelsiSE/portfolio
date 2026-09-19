@@ -40,37 +40,25 @@ export const portfolioData = {
 
   experience: [
     {
-      role: "Fullstack / Applied AI Engineer",
-      company: "Early-stage startup",
-      period: "2025 – present",
-      location: "Tunis · Remote",
+      role: "Full Stack Engineer",
+      company: "IT Strategix",
+      period: "Sep 2024 – present",
+      location: "Tunis, Tunisia",
       bullets: [
-        "Building the first release end to end for clients already waiting on it: mobile client, NestJS microservices, one API gateway in front of internal services.",
-        "Split identity into its own IAM context. Domain services stay internal; clients never talk to them directly.",
-        "Put jobs, notifications, and LLM calls on RabbitMQ so the user never waits on a model. Auth stays at the edge; the worker has timeouts and fallbacks.",
-        "Persist on MongoDB behind repository adapters. Delivery is Docker Compose plus Caddy — recette before prod, secrets out of git.",
-      ],
-    },
-    {
-      role: "Fullstack Engineer",
-      company: "Tutoring platform — web, mobile, API",
-      period: "2025 – 2026",
-      location: "Tunis · Remote",
-      bullets: [
-        "Shipped a design-system UI in React and TypeScript (tokens, composition, empty / error / success states) for coordinators, tutors, and students.",
-        "Built the NestJS API on PostgreSQL with Firebase identity, matching rules, sessions, and role-based access — not a pile of controllers.",
-        "Wired AI into the product as a worker: session recording → speech-to-text → LLM draft report, with a human edit step when the output is wrong.",
-        "Owned delivery: GitHub Actions on PR, Playwright against recette / dev, Docker image, gated promote to prod. Same image, three environments.",
+        "Designed and developed backend services and REST APIs using NestJS and TypeScript for web and mobile application modules.",
+        "Built full-stack features across React Native applications and backend services, integrating PostgreSQL and MongoDB.",
+        "Improved API and application performance, reducing response times by 35%.",
+        "Contributed to application architecture, testing, CI/CD and production deployment across multiple projects.",
       ],
     },
     {
       role: "Full Stack Developer Intern",
       company: "NAXXUM GROUP",
-      period: "Jun 2025 – Aug 2025",
+      period: "Jun 2025 – Jul 2025",
       location: "Tunis, Tunisia",
       bullets: [
-        "Returned to extend the e-learning platform from the previous internship — APIs, React modules, and MongoDB query paths under a larger concurrent load.",
-        "Hardened Express.js routes and redesigned several UI modules for performance and accessibility.",
+        "Optimized an educational platform using Node.js, Express, React and MongoDB.",
+        "Enhanced recommendation features through AI-powered suggestions.",
       ],
     },
     {
@@ -79,8 +67,18 @@ export const portfolioData = {
       period: "Jul 2024 – Aug 2024",
       location: "Tunis, Tunisia",
       bullets: [
-        "First version of an AI-powered e-learning platform: REST APIs in Node.js / Express, React UI, MongoDB for progress and scheduling.",
-        "Worked in a small Agile team — sprint planning and rapid prototyping.",
+        "Built and maintained features for an online teaching platform with React, Node.js, Express and MongoDB.",
+        "Implemented real-time student monitoring and strengthened application reliability.",
+      ],
+    },
+    {
+      role: "End-of-Studies Intern",
+      company: "SIGA",
+      period: "Feb 2023 – Jun 2023",
+      location: "Tunis, Tunisia",
+      bullets: [
+        "Designed and developed a task-tracking web application using Spring Boot, Angular and PostgreSQL.",
+        "Built REST APIs and user management modules that improved internal coordination.",
       ],
     },
   ] satisfies Experience[],
@@ -89,7 +87,7 @@ export const portfolioData = {
     {
       school: "ESPRIT",
       degree: "Engineering Degree in Software Engineering",
-      period: "Sep 2023 – present",
+      period: "2023 – 2026",
       location: "Tunis, Tunisia",
     },
     {
@@ -103,8 +101,8 @@ export const portfolioData = {
   projects: [
     {
       name: "Applied AI platform",
-      period: "2025 – present",
-      summary: "Startup in development — first release, clients already waiting.",
+      period: "Jun 2024 – present",
+      summary: "IT Strategix — first release in development, clients already waiting.",
       description:
         "Serious product work, not a lab demo. The model is a worker, not the app. Clients hit one gateway. IAM is its own context. Domain stays internal. Jobs, notifications, and LLM calls go on the broker.",
       stack: ["NestJS", "TypeScript", "RabbitMQ", "MongoDB", "Docker", "Mobile"],

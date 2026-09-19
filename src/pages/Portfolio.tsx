@@ -160,8 +160,8 @@ function ResumeButton({
         >
           <a
             role="menuitem"
-            href="/resume-en.pdf?v=1"
-            download="Mohamed-Ali-Trabelsi-CV-EN.pdf"
+            href="/resume-en.pdf?v=real"
+            download="CV_Mohamed_Ali_Trabelsi_EN.pdf"
             className="block rounded-lg px-3 py-2 text-sm hover:bg-raised"
             onClick={() => setOpen(false)}
           >
@@ -169,8 +169,8 @@ function ResumeButton({
           </a>
           <a
             role="menuitem"
-            href="/resume-fr.pdf?v=1"
-            download="Mohamed-Ali-Trabelsi-CV-FR.pdf"
+            href="/resume-fr.pdf?v=real"
+            download="CV_Mohamed_Ali_Trabelsi_FR.pdf"
             className="block rounded-lg px-3 py-2 text-sm hover:bg-raised"
             onClick={() => setOpen(false)}
           >
@@ -479,10 +479,7 @@ export default function PortfolioDevX() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h2 className="text-xl md:text-2xl font-bold mb-2">Work</h2>
-          <p className="text-sm text-mist mb-6">
-            Production products first. School labs stay off this page.
-          </p>
+          <h2 className="text-xl md:text-2xl font-bold mb-2">Projects</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {data.projects.map((project) => (
               <article
