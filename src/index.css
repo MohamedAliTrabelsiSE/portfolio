@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --raised: #f3f4f6;
+  --line: rgba(15, 23, 42, 0.12);
+}
+
+.dark {
+  --raised: #161b24;
+  --line: rgba(42, 49, 64, 0.55);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-paper text-ink antialiased;
+  font-family: "Segoe UI", ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
+}
+
+.dark body {
+  @apply bg-ink text-paper;
 }

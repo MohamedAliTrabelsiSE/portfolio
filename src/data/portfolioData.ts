@@ -1,6 +1,29 @@
+export type Experience = {
+  role: string
+  company: string
+  period: string
+  location: string
+  bullets: string[]
+}
+
+export type Project = {
+  name: string
+  period?: string
+  summary: string
+  description: string
+  stack: string[]
+  highlights: string[]
+}
+
+export type SkillGroup = {
+  title: string
+  skills: string[]
+}
+
 export const portfolioData = {
   name: "Mohamed Ali Trabelsi",
-  title: "Software Engineering Student",
+  title: "Fullstack Engineer",
+  tagline: "I design product interfaces and the systems behind them.",
   location: "Tunis, Tunisia",
   email: "trabelsi.mohamedali@esprit.tn",
   phone: "+216 28 751 504",
@@ -10,20 +33,44 @@ export const portfolioData = {
   },
 
   profile:
-    "🚀 Software engineering student specializing in full-stack and AI-powered applications. Experienced in designing scalable backend systems, intuitive frontends, and integrating intelligent models (LLAMA, Gemini, Mistral) into real products. Proven track record through internships and hackathons, where I delivered production-ready platforms in education, project management, and fitness coaching. Passionate about innovation, problem-solving, and impact, I am actively seeking a summer internship in 2025 to grow within an international engineering team and contribute to ambitious projects.",
+    "Fullstack engineer working on production web, mobile, and APIs. I treat UI as a system — tokens, composition, loading and error states — and hold the backend to the same bar: gateway, IAM, services, queues, then data. Models sit on the queue as workers, with auth at the edge, timeouts, and fallbacks. I ship through CI, not from a laptop: PR checks, image, recette, then prod.",
+
+  lookingFor:
+    "Fullstack seats where design and architecture are the same job.",
 
   experience: [
+    {
+      role: "Fullstack / Applied AI Engineer",
+      company: "Early-stage startup",
+      period: "2025 – present",
+      location: "Tunis · Remote",
+      bullets: [
+        "Building the first release end to end for clients already waiting on it: mobile client, NestJS microservices, one API gateway in front of internal services.",
+        "Split identity into its own IAM context. Domain services stay internal; clients never talk to them directly.",
+        "Put jobs, notifications, and LLM calls on RabbitMQ so the user never waits on a model. Auth stays at the edge; the worker has timeouts and fallbacks.",
+        "Persist on MongoDB behind repository adapters. Delivery is Docker Compose plus Caddy — recette before prod, secrets out of git.",
+      ],
+    },
+    {
+      role: "Fullstack Engineer",
+      company: "Tutoring platform — web, mobile, API",
+      period: "2025 – 2026",
+      location: "Tunis · Remote",
+      bullets: [
+        "Shipped a design-system UI in React and TypeScript (tokens, composition, empty / error / success states) for coordinators, tutors, and students.",
+        "Built the NestJS API on PostgreSQL with Firebase identity, matching rules, sessions, and role-based access — not a pile of controllers.",
+        "Wired AI into the product as a worker: session recording → speech-to-text → LLM draft report, with a human edit step when the output is wrong.",
+        "Owned delivery: GitHub Actions on PR, Playwright against recette / dev, Docker image, gated promote to prod. Same image, three environments.",
+      ],
+    },
     {
       role: "Full Stack Developer Intern",
       company: "NAXXUM GROUP",
       period: "Jun 2025 – Aug 2025",
       location: "Tunis, Tunisia",
       bullets: [
-        "Returned for a second internship to **extend and optimize the e-learning platform** built previously.",
-        "Enhanced API scalability and security in **Node.js / Express.js**, handling a larger volume of concurrent users.",
-        "Redesigned several UI modules with **React** to improve performance and user experience.",
-        "Worked on advanced **MongoDB indexing and queries**, significantly reducing data retrieval time.",
-        "Mentored junior interns and contributed to team Agile rituals to accelerate delivery cycles.",
+        "Returned to extend the e-learning platform from the previous internship — APIs, React modules, and MongoDB query paths under a larger concurrent load.",
+        "Hardened Express.js routes and redesigned several UI modules for performance and accessibility.",
       ],
     },
     {
@@ -32,27 +79,11 @@ export const portfolioData = {
       period: "Jul 2024 – Aug 2024",
       location: "Tunis, Tunisia",
       bullets: [
-        "Joined the company to develop the initial version of an **AI-powered e-learning platform**.",
-        "Implemented **RESTful APIs** in Node.js and Express.js for course delivery and user management.",
-        "Created intuitive, responsive UI components in **React**, ensuring accessibility for students and teachers.",
-        "Integrated **MongoDB** to support real-time course tracking and scheduling.",
-        "Collaborated with a small cross-functional team under **Agile methodology**, contributing to sprint planning and rapid prototyping.",
+        "First version of an AI-powered e-learning platform: REST APIs in Node.js / Express, React UI, MongoDB for progress and scheduling.",
+        "Worked in a small Agile team — sprint planning and rapid prototyping.",
       ],
     },
-
-    {
-      role: "End-of-Study Intern",
-      company: "SIGA",
-      period: "Feb 2023 – Jun 2023",
-      location: "Tunis, Tunisia",
-      bullets: [
-        "Developed a **task-tracking and project management application** to streamline team coordination and accountability.",
-        "Implemented robust **Spring Boot APIs** and integrated them with a PostgreSQL database to manage users, tasks, and reporting workflows.",
-        "Designed interactive dashboards with **Angular**, allowing managers to monitor project progress and deadlines effectively.",
-        "Delivered the solution as a **production-ready application** with secure authentication and role-based access control.",
-      ],
-    },
-  ],
+  ] satisfies Experience[],
 
   education: [
     {
@@ -71,87 +102,132 @@ export const portfolioData = {
 
   projects: [
     {
+      name: "Applied AI platform",
+      period: "2025 – present",
+      summary: "Startup in development — first release, clients already waiting.",
+      description:
+        "Serious product work, not a lab demo. The model is a worker, not the app. Clients hit one gateway. IAM is its own context. Domain stays internal. Jobs, notifications, and LLM calls go on the broker.",
+      stack: ["NestJS", "TypeScript", "RabbitMQ", "MongoDB", "Docker", "Mobile"],
+      highlights: [
+        "API gateway / BFF in front of services",
+        "Dedicated IAM — tokens, not auth mixed into every feature",
+        "LLM behind the queue — timeouts and fallbacks",
+      ],
+    },
+    {
+      name: "Tutoring platform",
+      period: "2025 – 2026",
+      summary: "Web + mobile + API. Design system on the client, recette before prod.",
+      description:
+        "Coordination product for tutors, students, and staff. Same care from the screen to the pipeline: a token-based UI, a NestJS API, Playwright on recette, then a promoted image. AI drafts session reports; a human reviews them.",
+      stack: [
+        "React",
+        "TypeScript",
+        "NestJS",
+        "PostgreSQL",
+        "Firebase",
+        "Playwright",
+        "GitHub Actions",
+      ],
+      highlights: [
+        "Design system — tokens, composition, states",
+        "PR → CI → image → recette → prod",
+        "STT + LLM as a worker, not inside every controller",
+      ],
+    },
+    {
+      name: "Pawlink",
+      period: "2024",
+      summary: "Flutter client on Java microservices — gateway and IAM first.",
+      description:
+        "Pet-care product split into bounded services. The Flutter app talks to a gateway. Identity lives in a dedicated IAM service. Account and domain stay behind it.",
+      stack: ["Flutter", "Java", "API Gateway", "IAM", "Microservices"],
+      highlights: [
+        "Gateway as the only public entry",
+        "IAM as its own service",
+        "Account and domain services stay internal",
+      ],
+    },
+    {
       name: "PrimeProf",
       period: "Jan 2025 – May 2025",
+      summary: "AI tutoring mobile app — matching students with teachers.",
       description:
-        "Created an **AI-driven mobile education platform** using Flutter, NestJS, and PostgreSQL. Integrated **LLAMA AI** to provide personalized tutoring experiences and automatically match students with suitable teachers. Designed a clean, intuitive interface that supports both students and educators, bridging the gap between learners and mentors.",
-      images: [],
-      videos: [],
+        "Flutter + NestJS + PostgreSQL. LLAMA personalizes tutoring and matches learners with teachers. Early mobile + API work with a model behind the service.",
+      stack: ["Flutter", "NestJS", "PostgreSQL", "LLAMA"],
+      highlights: [
+        "Personalized tutoring flows",
+        "Student–teacher matching",
+        "Mobile-first interface",
+      ],
     },
     {
-      name: "GainUp – Fitness Coaching App",
+      name: "GainUp",
+      period: "2024",
+      summary: "iOS fitness coach — Gemini and Mistral behind the API.",
       description:
-        "Developed a beginner-friendly **fitness coaching mobile app** powered by **Swift and NestJS**. Integrated **Gemini** and **Mistral AI models** to generate tailored workout routines and nutritional advice, providing users with a personal AI fitness coach. The app featured real-time tracking and adaptive recommendations to boost engagement.",
-      images: [],
-      videos: [],
+        "SwiftUI client, NestJS API, MongoDB. Models generate training and nutrition plans from user goals. The interesting part was treating the model as a feature behind the API, not as the product.",
+      stack: ["SwiftUI", "NestJS", "MongoDB", "Gemini", "Mistral"],
+      highlights: [
+        "Adaptive workout and nutrition plans",
+        "Model calls isolated in the API",
+        "Beginner-friendly product UI",
+      ],
     },
-    {
-      name: "Sales Management – Hackathon Project",
-      description:
-        "Built a complete **sales tracking system** for construction companies in just 24 hours during a hackathon. Implemented multi-branch sales monitoring, inventory management, and financial tracking with **Flutter** for the frontend and **NestJS + MongoDB** for the backend. The solution demonstrated rapid prototyping and scalability under tight deadlines.",
-      images: [],
-      videos: [],
-    },
-    {
-      name: "Project Management Platform (PFE)",
-      description:
-        "Led the design and development of a **collaborative project management platform** supporting task assignment, deadline monitoring, and multi-user workflows. Delivered robust authentication, real-time task updates, and interactive dashboards using **Spring Boot, Angular, and PostgreSQL**. This served as a full-featured enterprise project management tool.",
-      images: [],
-      videos: [],
-    },
-    {
-      name: "Online Ticket Reservation System",
-      description:
-        "Designed and implemented a **cross-platform ticket booking application** using **JavaFX and FlutterFlow**. Built backend services with **MySQL**, supporting seat reservations, booking history, and payment integration. Modeled the full architecture with **StarUML**, ensuring modularity and scalability.",
-      images: [],
-      videos: [],
-    },
-    {
-      name: "Community App – Hackathon",
-      description:
-        "Co-developed a **student community platform** for Esprit University featuring real-time podcasting, live interactions, and AI-powered content suggestions. Implemented using **Flutter, NestJS, and MongoDB**, the app aimed to foster engagement and communication between students and organizations.",
-      images: [],
-      videos: [],
-    },
-  ],
+  ] satisfies Project[],
 
-  skills: [
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "Express.js",
-    "NestJS",
-    "Angular",
-    "Spring Boot",
-    "Flutter",
-    "Swift",
-    "FlutterFlow",
-    "JavaFX",
-    "PostgreSQL",
-    "MongoDB",
-    "MySQL",
-    "Firebase",
-    "REST APIs",
-    "Authentication / Authorization",
-    "Agile methodologies (Scrum, Kanban)",
-    "Git & GitHub",
-    "Symfony",
-    "StarUML",
-    "AI Model Integration (LLAMA, Gemini, Mistral)",
-  ],
+  skillGroups: [
+    {
+      title: "Interface",
+      skills: [
+        "TypeScript",
+        "React",
+        "Flutter",
+        "SwiftUI",
+        "Design systems",
+        "Composition",
+        "Motion",
+      ],
+    },
+    {
+      title: "Platform",
+      skills: [
+        "NestJS",
+        "Node.js",
+        "Java",
+        "REST",
+        "API gateway",
+        "IAM",
+        "RabbitMQ",
+      ],
+    },
+    {
+      title: "Data",
+      skills: ["PostgreSQL", "MongoDB", "MySQL", "Firebase", "Repository / migrations"],
+    },
+    {
+      title: "Delivery",
+      skills: [
+        "Docker",
+        "GitHub Actions",
+        "Playwright",
+        "Recette → prod",
+        "Git",
+        "Agile",
+      ],
+    },
+  ] satisfies SkillGroup[],
 
   languages: [
     { label: "Arabic", level: "Native" },
-    { label: "English", level: "B2 – Professional working proficiency" },
-    { label: "French", level: "B2 – Professional working proficiency" },
+    { label: "English", level: "C1 — professional working proficiency" },
+    { label: "French", level: "B2 — professional working proficiency" },
   ],
 
   community: [
-    "Active member – Tunisian Red Crescent (volunteering and humanitarian activities)",
-    "Member – Engineers Spark FST (student engineering club)",
-    "Contributor – IEEE SC Chapter, FST Student Branch",
-    "Participant – Hult Prize Tunisia (social entrepreneurship competition)",
+    "Tunisian Red Crescent",
+    "Engineers Spark FST",
+    "IEEE SC Chapter, FST Student Branch",
+    "Hult Prize Tunisia",
   ],
 }

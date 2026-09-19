@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mohamed Ali Trabelsi — Ingénieur fullstack</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 10mm 12mm;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #111827;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 9.6pt;
+        line-height: 1.28;
+      }
+      header {
+        border-left: 4px solid #1f8a62;
+        padding-left: 12px;
+        margin-bottom: 8px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 18pt;
+        letter-spacing: -0.02em;
+      }
+      .role {
+        margin: 2px 0 4px;
+        color: #1f8a62;
+        font-weight: 700;
+        font-size: 10pt;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .meta { color: #4b5563; font-size: 9pt; }
+      .meta a { color: inherit; text-decoration: none; }
+      h2 {
+        margin: 8px 0 4px;
+        font-size: 9pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #1f8a62;
+        border-bottom: 1px solid #d1d5db;
+        padding-bottom: 2px;
+      }
+      p { margin: 0 0 4px; }
+      .job { margin-bottom: 5px; }
+      .job-head, .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .job-head strong { font-size: 10.6pt; }
+      .muted { color: #4b5563; }
+      ul { margin: 3px 0 0 18px; padding: 0; }
+      li { margin: 1px 0; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+      .skills { margin: 0; }
+      .skills div { margin-bottom: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mohamed Ali Trabelsi</h1>
+      <div class="role">Ingénieur fullstack</div>
+      <div class="meta">
+        Tunis, Tunisie · +216 28 751 504 ·
+        <a href="mailto:trabelsi.mohamedali@esprit.tn">trabelsi.mohamedali@esprit.tn</a><br />
+        <a href="https://linkedin.com/in/mohamedalitrabelsi">linkedin.com/in/mohamedalitrabelsi</a>
+        ·
+        <a href="https://github.com/MohamedAliTrabelsiSE">github.com/MohamedAliTrabelsiSE</a>
+      </div>
+    </header>
+
+    <h2>Profil</h2>
+    <p>
+      Ingénieur fullstack sur des produits web, mobile et API en production.
+      L'interface est un système (tokens, composition, états). Le backend :
+      gateway, IAM, services, files, puis données. Les LLM sont des workers sur
+      la file — authentification en bordure, timeouts, repli. La livraison passe
+      par la CI : contrôles PR, image, recette, puis production.
+    </p>
+
+    <h2>Expérience</h2>
+    <div class="job">
+      <div class="job-head">
+        <strong>Ingénieur fullstack / IA appliquée — Startup early-stage</strong>
+        <span class="muted">2025 – aujourd'hui</span>
+      </div>
+      <div class="muted">Tunis · Remote</div>
+      <ul>
+        <li>Première version pour des clients déjà en attente : client mobile, microservices NestJS, une API gateway devant les services internes.</li>
+        <li>IAM comme contexte dédié. Jobs, notifications et appels LLM sur RabbitMQ pour que l'utilisateur n'attende pas le modèle.</li>
+        <li>MongoDB derrière des adapters repository. Docker + Caddy — recette avant la prod, secrets hors git.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>Ingénieur fullstack — Plateforme de tutorat (web, mobile, API)</strong>
+        <span class="muted">2025 – 2026</span>
+      </div>
+      <div class="muted">Tunis · Remote</div>
+      <ul>
+        <li>Design system React / TypeScript pour coordinateurs, tuteurs et élèves — états vide, erreur et succès compris.</li>
+        <li>API NestJS sur PostgreSQL avec identité Firebase, matching, séances et contrôle d'accès par rôles.</li>
+        <li>IA en worker : enregistrement de séance → speech-to-text → brouillon LLM, puis relecture humaine.</li>
+        <li>GitHub Actions sur PR, Playwright sur recette/dev, image Docker, promotion contrôlée vers la prod.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>Stagiaire fullstack — NAXXUM GROUP</strong>
+        <span class="muted">juin 2025 – août 2025</span>
+      </div>
+      <div class="muted">Tunis, Tunisie</div>
+      <ul>
+        <li>Deuxième stage : montée en charge de la plateforme e-learning — APIs Express, modules React, MongoDB sous plus de concurrence.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>Stagiaire fullstack — NAXXUM GROUP</strong>
+        <span class="muted">juil. 2024 – août 2024</span>
+      </div>
+      <div class="muted">Tunis, Tunisie</div>
+      <ul>
+        <li>Première version d'une plateforme e-learning IA : Node.js / Express, React, MongoDB pour le suivi et le planning.</li>
+      </ul>
+    </div>
+
+    <h2>Travaux sélectionnés</h2>
+    <div class="job">
+      <div class="job-head">
+        <strong>Plateforme d'IA appliquée</strong>
+        <span class="muted">NestJS · RabbitMQ · MongoDB · Docker · Mobile</span>
+      </div>
+      <div>Startup en développement. Gateway, IAM dédié, LLM derrière la file.</div>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>Plateforme de tutorat</strong>
+        <span class="muted">React · NestJS · PostgreSQL · Playwright · Actions</span>
+      </div>
+      <div>Design system + pipeline recette → prod. Comptes rendus STT/LLM.</div>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>Pawlink</strong>
+        <span class="muted">Flutter · Java · API Gateway · IAM</span>
+      </div>
+      <div>Client Flutter sur microservices Java — gateway et IAM d'abord.</div>
+    </div>
+    <div class="job">
+      <div class="job-head">
+        <strong>PrimeProf · GainUp</strong>
+        <span class="muted">Flutter / SwiftUI · NestJS · LLAMA / Gemini / Mistral</span>
+      </div>
+      <div>Tutorat IA et coach fitness iOS — modèles derrière l'API, pas comme produit.</div>
+    </div>
+
+    <h2>Compétences</h2>
+    <div class="skills">
+      <div><strong>Interface</strong> — TypeScript, React, Flutter, SwiftUI, design systems, motion</div>
+      <div><strong>Plateforme</strong> — NestJS, Node.js, Java, REST, API gateway, IAM, RabbitMQ</div>
+      <div><strong>Données</strong> — PostgreSQL, MongoDB, MySQL, Firebase, repository / migrations</div>
+      <div><strong>Livraison</strong> — Docker, GitHub Actions, Playwright, recette → prod, Git, Agile</div>
+    </div>
+
+    <h2>Formation</h2>
+    <div class="grid">
+      <div>
+        <strong>ESPRIT</strong> — Diplôme d'ingénieur en génie logiciel<br />
+        <span class="muted">sept. 2023 – aujourd'hui · Tunis</span>
+      </div>
+      <div>
+        <strong>FST</strong> — Licence en informatique<br />
+        <span class="muted">sept. 2020 – juin 2023 · Tunis</span>
+      </div>
+    </div>
+
+    <h2>Langues et associatif</h2>
+    <p>
+      Arabe (langue maternelle) · Anglais (C1) · Français (B2)<br />
+      Croissant-Rouge tunisien · Engineers Spark FST · IEEE SC Chapter FST · Hult Prize Tunisie
+    </p>
+  </body>
+</html>
