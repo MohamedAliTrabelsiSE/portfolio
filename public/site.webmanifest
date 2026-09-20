@@ -1,0 +1,21 @@
+{
+  "name": "Mohamed Ali Trabelsi",
+  "short_name": "Mohamed Ali",
+  "description": "Fullstack engineer — product UI, APIs, and distributed systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "/favicon.png?v=coffee",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png?v=coffee",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

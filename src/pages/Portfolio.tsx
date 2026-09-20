@@ -276,22 +276,24 @@ export default function PortfolioDevX() {
         className="fixed inset-0 -z-10 opacity-0 dark:opacity-100 transition-opacity bg-glow"
       />
 
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-line bg-paper/80 backdrop-blur dark:bg-ink/70">
-        <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-line bg-paper/80 pt-[env(safe-area-inset-top)] backdrop-blur dark:bg-ink/70">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 md:h-16">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3"
+            className="flex min-w-0 items-center gap-2.5"
             aria-label="Go to top"
           >
             <img
               src="/anime-avatar.png"
               alt=""
-              className="size-9 rounded-full ring-2 ring-line object-cover"
+              className="size-8 shrink-0 rounded-full object-cover ring-2 ring-line md:size-9"
             />
-            <span className="font-semibold tracking-tight">{data.name}</span>
+            <span className="truncate font-semibold tracking-tight">
+              {data.name}
+            </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden items-center gap-1 md:flex">
             {SECTION_IDS.map((id) => (
               <button
                 key={id}
@@ -645,24 +647,28 @@ export default function PortfolioDevX() {
         </motion.section>
       </main>
 
-      <footer className="mx-auto max-w-6xl px-4 py-8 text-xs text-mist border-t border-line">
+      <footer className="mx-auto max-w-6xl border-t border-line px-4 py-8 pb-24 text-xs text-mist md:pb-8">
         © {new Date().getFullYear()} {data.name}. Design and architecture, same
         job.
       </footer>
 
-      <div className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-50">
-        <div className="flex items-center gap-1 rounded-full border border-line bg-paper/90 text-ink backdrop-blur px-2 py-2 dark:bg-ink/80 dark:text-paper">
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
+        <div className="no-scrollbar pointer-events-auto mx-auto flex max-w-full items-center justify-between gap-0.5 overflow-x-auto rounded-full border border-line bg-paper/90 px-1.5 py-1.5 text-ink backdrop-blur dark:bg-ink/80 dark:text-paper">
           {SECTION_IDS.map((id) => (
             <button
               key={id}
               onClick={() => smoothScrollTo(id)}
-              className={`px-2.5 py-1 text-[11px] rounded-full ${
+              className={`shrink-0 whitespace-nowrap rounded-full px-2 py-1 text-[11px] ${
                 activeId === id
                   ? "bg-mint/20 text-mint-dim dark:text-mint"
                   : "text-inherit"
               }`}
             >
-              {label(id)}
+              {id === "experience"
+                ? "Exp"
+                : id === "education"
+                  ? "Edu"
+                  : label(id)}
             </button>
           ))}
           <ThemeToggleButton theme={theme} onToggle={toggle} />

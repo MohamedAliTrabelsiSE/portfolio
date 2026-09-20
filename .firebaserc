@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "portfolio-8355c"
-  }
+  },
+  "targets": {
+    "portfolio-8355c": {
+      "hosting": {
+        "main": [
+          "mohamedali-trabelsi"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
