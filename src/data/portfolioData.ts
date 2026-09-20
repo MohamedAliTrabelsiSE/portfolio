@@ -33,7 +33,7 @@ export const portfolioData = {
   },
 
   profile:
-    "Fullstack engineer working on production web, mobile, and APIs. I treat UI as a system — tokens, composition, loading and error states — and hold the backend to the same bar: gateway, IAM, services, queues, then data. Models sit on the queue as workers, with auth at the edge, timeouts, and fallbacks. I ship through CI, not from a laptop: PR checks, image, recette, then prod.",
+    "Fullstack engineer working on production web, mobile, and APIs. I treat UI as a system: tokens, composition, loading and error states. The backend gets the same bar: gateway, IAM, services, queues, then data. Models sit on the queue as workers, with auth at the edge, timeouts, and fallbacks. I ship through CI, not from a laptop: PR checks, image, recette, then prod.",
 
   lookingFor:
     "Fullstack seats where design and architecture are the same job.",
@@ -100,76 +100,68 @@ export const portfolioData = {
 
   projects: [
     {
-      name: "Applied AI platform",
-      period: "Jun 2024 – present",
-      summary: "IT Strategix — first release in development, clients already waiting.",
+      name: "Smart delivery mobile app",
+      summary: "Logistics SaaS: three roles, live tracking, AI voice assistant.",
       description:
-        "Serious product work, not a lab demo. The model is a worker, not the app. Clients hit one gateway. IAM is its own context. Domain stays internal. Jobs, notifications, and LLM calls go on the broker.",
-      stack: ["NestJS", "TypeScript", "RabbitMQ", "MongoDB", "Docker", "Mobile"],
+        "Cross-platform delivery product on microservices. One codebase for the three roles, real-time tracking and QR-code handover. A voice assistant in Tunisian Darija sits behind the API. Shipped with DigitalOcean and Expo EAS.",
+      stack: [
+        "NestJS",
+        "React Native",
+        "Expo",
+        "RabbitMQ",
+        "Supabase",
+        "MongoDB",
+        "Google Maps",
+        "OpenAI Realtime",
+        "DigitalOcean",
+      ],
       highlights: [
-        "API gateway / BFF in front of services",
-        "Dedicated IAM — tokens, not auth mixed into every feature",
-        "LLM behind the queue — timeouts and fallbacks",
+        "Three roles in a single React Native / Expo codebase",
+        "Real-time tracking and QR-code delivery",
+        "Darija voice assistant on the OpenAI Realtime model",
       ],
     },
     {
-      name: "Tutoring platform",
-      period: "2025 – 2026",
-      summary: "Web + mobile + API. Design system on the client, recette before prod.",
+      name: "AI-powered education platform",
+      summary: "Mobile tutoring. LLaMA matches students with teachers.",
       description:
-        "Coordination product for tutors, students, and staff. Same care from the screen to the pipeline: a token-based UI, a NestJS API, Playwright on recette, then a promoted image. AI drafts session reports; a human reviews them.",
+        "Expo and NestJS education app on PostgreSQL. LLaMA personalizes tutoring and matches learners with teachers from their needs. The model stays behind the API.",
       stack: [
-        "React",
-        "TypeScript",
+        "Expo",
+        "React Native",
         "NestJS",
         "PostgreSQL",
-        "Firebase",
-        "Playwright",
-        "GitHub Actions",
+        "TypeScript",
+        "LLaMA",
       ],
-      highlights: [
-        "Design system — tokens, composition, states",
-        "PR → CI → image → recette → prod",
-        "STT + LLM as a worker, not inside every controller",
-      ],
-    },
-    {
-      name: "Pawlink",
-      period: "2024",
-      summary: "Flutter client on Java microservices — gateway and IAM first.",
-      description:
-        "Pet-care product split into bounded services. The Flutter app talks to a gateway. Identity lives in a dedicated IAM service. Account and domain stay behind it.",
-      stack: ["Flutter", "Java", "API Gateway", "IAM", "Microservices"],
-      highlights: [
-        "Gateway as the only public entry",
-        "IAM as its own service",
-        "Account and domain services stay internal",
-      ],
-    },
-    {
-      name: "PrimeProf",
-      period: "Jan 2025 – May 2025",
-      summary: "AI tutoring mobile app — matching students with teachers.",
-      description:
-        "Flutter + NestJS + PostgreSQL. LLAMA personalizes tutoring and matches learners with teachers. Early mobile + API work with a model behind the service.",
-      stack: ["Flutter", "NestJS", "PostgreSQL", "LLAMA"],
       highlights: [
         "Personalized tutoring flows",
-        "Student–teacher matching",
-        "Mobile-first interface",
+        "Automatic student–teacher matching",
+        "Mobile client on Expo, API on NestJS",
       ],
     },
     {
-      name: "GainUp",
-      period: "2024",
-      summary: "iOS fitness coach — Gemini and Mistral behind the API.",
+      name: "AI-powered fitness coaching app",
+      summary: "Beginner iOS coach. Gemini and Mistral sit behind the API.",
       description:
-        "SwiftUI client, NestJS API, MongoDB. Models generate training and nutrition plans from user goals. The interesting part was treating the model as a feature behind the API, not as the product.",
-      stack: ["SwiftUI", "NestJS", "MongoDB", "Gemini", "Mistral"],
+        "Swift client, NestJS API, MongoDB. Models generate training programs from user goals. The interesting part is treating the model as a feature behind the service, not as the product.",
+      stack: ["Swift", "NestJS", "MongoDB", "Gemini", "Mistral AI"],
       highlights: [
-        "Adaptive workout and nutrition plans",
-        "Model calls isolated in the API",
-        "Beginner-friendly product UI",
+        "Custom training plans from user goals",
+        "Gemini and Mistral isolated in the API",
+        "Beginner-friendly mobile interface",
+      ],
+    },
+    {
+      name: "Travel & social activity platform",
+      summary: "Trips, companions, and shared activities. Full-stack.",
+      description:
+        "Platform for travelers to organize trips, share activities, find companions, and connect by destination and interests. Angular on the client, NestJS and PostgreSQL behind a REST API.",
+      stack: ["Express", "NestJS", "PostgreSQL", "TypeScript", "REST API"],
+      highlights: [
+        "Trip planning and shared activities",
+        "Companion matching by destination and interests",
+        "Full-stack Angular + NestJS",
       ],
     },
   ] satisfies Project[],
@@ -180,11 +172,11 @@ export const portfolioData = {
       skills: [
         "TypeScript",
         "React",
-        "Flutter",
-        "SwiftUI",
+        "React Native",
+        "Expo",
+        "Express",
+        "Swift",
         "Design systems",
-        "Composition",
-        "Motion",
       ],
     },
     {
@@ -218,8 +210,8 @@ export const portfolioData = {
 
   languages: [
     { label: "Arabic", level: "Native" },
-    { label: "English", level: "C1 — professional working proficiency" },
-    { label: "French", level: "B2 — professional working proficiency" },
+    { label: "English", level: "C1, professional working proficiency" },
+    { label: "French", level: "B2, professional working proficiency" },
   ],
 
   community: [

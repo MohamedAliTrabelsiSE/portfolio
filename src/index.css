@@ -14,10 +14,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(3.5rem + env(safe-area-inset-top, 0px));
 }
 
 body {
   @apply bg-paper text-ink antialiased;
+  overflow-x: hidden;
   font-family: "Segoe UI", ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
 }
 

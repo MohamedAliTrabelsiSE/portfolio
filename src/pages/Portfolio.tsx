@@ -10,6 +10,11 @@ import {
   Sun,
   Moon,
   ArrowRight,
+  User,
+  Layers,
+  FolderKanban,
+  Briefcase,
+  GraduationCap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -80,6 +85,15 @@ const SECTION_IDS = [
   "contact",
 ] as const;
 
+const MOBILE_NAV = [
+  { id: "about", label: "About", Icon: User },
+  { id: "craft", label: "Craft", Icon: Layers },
+  { id: "work", label: "Project", Icon: FolderKanban },
+  { id: "experience", label: "Exp", Icon: Briefcase },
+  { id: "education", label: "Edu", Icon: GraduationCap },
+  { id: "contact", label: "Contact", Icon: Mail },
+] as const;
+
 function useScrollSpy(ids: readonly string[], rootMargin = "-50% 0px -45% 0px") {
   const [activeId, setActiveId] = useState<string | null>(ids[0] ?? null);
   useEffect(() => {
@@ -108,7 +122,7 @@ const label = (id: string) =>
   ({
     about: "About",
     craft: "Craft",
-    work: "Work",
+    work: "Project",
     experience: "Experience",
     education: "Education",
     contact: "Contact",
@@ -128,20 +142,22 @@ function ResumeButton({
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
-    const onClick = (event: MouseEvent) => {
+    const onClick = (event: Event) => {
       const target = event.target as HTMLElement | null;
       if (!target?.closest("[data-resume-chooser]")) setOpen(false);
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick);
     return () => {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
     };
   }, [open]);
 
   return (
-    <div className="relative" data-resume-chooser>
+    <div className="relative w-full sm:w-auto" data-resume-chooser>
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -154,7 +170,7 @@ function ResumeButton({
       {open && (
         <div
           role="menu"
-          className={`absolute left-0 z-20 min-w-[11rem] rounded-xl border border-line bg-white p-1 shadow-xl dark:bg-card ${
+          className={`absolute right-0 z-20 min-w-[11rem] rounded-xl border border-line bg-white p-1 shadow-xl dark:bg-card md:left-0 md:right-auto ${
             dropUp ? "bottom-full mb-2" : "mt-2"
           }`}
         >
@@ -228,7 +244,7 @@ function Architecture() {
           Clients to gateway to services. Models sit on the queue, not in every
           controller.
         </p>
-        <div className="mt-4 grid gap-3 md:grid-cols-[1fr,1fr,1fr,1fr] items-stretch">
+        <div className="mt-4 grid grid-cols-2 items-stretch gap-3 md:grid-cols-4">
           <FlowBox kicker="Clients" title="Web / Mobile" />
           <FlowBox kicker="Edge" title="Gateway / BFF" />
           <div className="grid gap-2">
@@ -293,6 +309,10 @@ export default function PortfolioDevX() {
             </span>
           </button>
 
+          <div className="shrink-0 md:hidden">
+            <ThemeToggleButton theme={theme} onToggle={toggle} />
+          </div>
+
           <div className="hidden items-center gap-1 md:flex">
             {SECTION_IDS.map((id) => (
               <button
@@ -313,20 +333,20 @@ export default function PortfolioDevX() {
         </div>
       </nav>
 
-      <header className="pt-24 md:pt-28">
+      <header className="pt-20 md:pt-28">
         <div className="mx-auto max-w-6xl px-4">
           <motion.section
             variants={fade}
             initial="hidden"
             animate="show"
-            className="relative grid md:grid-cols-[1.2fr,1fr] gap-6 rounded-3xl border border-line bg-white p-6 md:p-10 shadow-2xl dark:bg-card"
+            className="relative grid gap-5 rounded-3xl border border-line bg-white p-4 shadow-2xl dark:bg-card sm:p-6 md:grid-cols-[1.2fr,1fr] md:gap-6 md:p-10"
           >
             <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-mint hidden md:block" />
-            <div className="flex flex-col justify-center md:pl-4">
+            <div className="order-2 flex min-w-0 flex-col justify-center md:order-1 md:pl-4">
               <p className="text-[11px] uppercase tracking-[0.22em] text-mint-dim dark:text-mint font-semibold">
                 {data.title}
               </p>
-              <h1 className="mt-2 text-3xl md:text-5xl font-extrabold leading-tight">
+              <h1 className="mt-2 text-[1.7rem] font-extrabold leading-tight sm:text-3xl md:text-5xl">
                 Nice to meet you, I&apos;m{" "}
                 <span className="text-ink dark:text-white">
                   {data.name.split(" ").slice(0, 2).join(" ")}
@@ -336,11 +356,11 @@ export default function PortfolioDevX() {
               <p className="mt-2 text-sm text-mist inline-flex items-center gap-1">
                 <MapPin size={14} /> {data.location}
               </p>
-              <p className="mt-4 text-ink/80 dark:text-paper/80 max-w-2xl">
+              <p className="mt-4 hidden max-w-2xl text-ink/80 dark:text-paper/80 md:block">
                 {data.profile}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {["Product UI", "APIs", "Distributed systems", "Delivery"].map(
                   (chip) => (
                     <Pill key={chip}>{chip}</Pill>
@@ -348,12 +368,12 @@ export default function PortfolioDevX() {
                 )}
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
                 <a
                   href={data.socials.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-line bg-raised px-4 py-2 text-sm hover:border-mint/40"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-raised px-3 py-2 text-sm hover:border-mint/40 sm:px-4"
                 >
                   <Github size={18} /> GitHub
                 </a>
@@ -361,22 +381,22 @@ export default function PortfolioDevX() {
                   href={data.socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-line bg-raised px-4 py-2 text-sm hover:border-mint/40"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-raised px-3 py-2 text-sm hover:border-mint/40 sm:px-4"
                 >
                   <Linkedin size={18} /> LinkedIn
                 </a>
                 <button
                   onClick={() => smoothScrollTo("work")}
-                  className="inline-flex items-center gap-2 rounded-xl bg-mint px-4 py-2 text-sm font-semibold text-ink hover:opacity-90"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-mint px-3 py-2 text-sm font-semibold text-ink hover:opacity-90 sm:px-4"
                 >
                   <ChevronDown size={18} /> View work
                 </button>
-                <ResumeButton className="inline-flex items-center gap-2 rounded-xl bg-ink text-paper px-4 py-2 text-sm font-semibold hover:opacity-90 dark:bg-paper dark:text-ink" />
+                <ResumeButton className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-paper hover:opacity-90 dark:bg-paper dark:text-ink sm:w-auto sm:px-4" />
               </div>
             </div>
 
-            <div className="relative grid place-items-center">
-              <div className="size-64 md:size-80 rounded-full border border-line shadow-xl overflow-hidden bg-[#f4ead4]">
+            <div className="relative order-1 grid place-items-center md:order-2">
+              <div className="size-40 overflow-hidden rounded-full border border-line bg-[#f4ead4] shadow-xl sm:size-56 md:size-80">
                 <img
                   src="/anime-avatar.png"
                   alt=""
@@ -388,14 +408,14 @@ export default function PortfolioDevX() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 py-12 space-y-10">
+      <main className="mx-auto max-w-6xl space-y-10 px-4 py-10 pb-28 md:py-12 md:pb-12">
         <motion.section
           id="about"
           variants={fade}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="rounded-3xl border border-line bg-white p-6 md:p-8 dark:bg-card"
+          className="scroll-mt-20 rounded-3xl border border-line bg-white p-5 md:p-8 dark:bg-card"
         >
           <h2 className="text-xl md:text-2xl font-bold mb-2">About</h2>
           <p className="text-ink/80 dark:text-paper/80 max-w-3xl">
@@ -417,7 +437,7 @@ export default function PortfolioDevX() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="space-y-6"
+          className="scroll-mt-20 space-y-6"
         >
           <div className="rounded-3xl border border-line bg-white p-6 md:p-8 dark:bg-card">
             <h2 className="text-xl md:text-2xl font-bold mb-6">
@@ -430,7 +450,7 @@ export default function PortfolioDevX() {
             <div className="rounded-3xl border border-line bg-white p-6 dark:bg-card">
               <h3 className="font-semibold text-lg">Interface</h3>
               <p className="mt-2 text-sm text-mist">
-                UI is a system: tokens, composition, states — not a pile of
+                UI is a system: tokens, composition, states, not a pile of
                 screens.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-ink/80 dark:text-paper/80">
@@ -438,7 +458,7 @@ export default function PortfolioDevX() {
                 <li>Small presentational pieces assembled into features</li>
                 <li>Data and side effects stay out of visual components</li>
                 <li>Loading, empty, error, success are designed, not leftover</li>
-                <li>Motion for feedback and hierarchy — never decoration</li>
+                <li>Motion for feedback and hierarchy, never decoration</li>
               </ul>
             </div>
             <div className="rounded-3xl border border-line bg-white p-6 dark:bg-card">
@@ -451,7 +471,7 @@ export default function PortfolioDevX() {
                 <li>One gateway; services stay internal</li>
                 <li>IAM is its own context</li>
                 <li>Queues for jobs, notifications, and model calls</li>
-                <li>CI on PR, image, recette, then prod — not laptop-to-prod</li>
+                <li>CI on PR, image, recette, then prod. Not laptop-to-prod.</li>
                 <li>LLM as a worker: auth at the edge, timeouts, fallbacks</li>
               </ul>
             </div>
@@ -480,8 +500,9 @@ export default function PortfolioDevX() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
+          className="scroll-mt-20"
         >
-          <h2 className="text-xl md:text-2xl font-bold mb-2">Projects</h2>
+          <h2 className="mb-2 text-xl font-bold md:text-2xl">Projects</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {data.projects.map((project) => (
               <article
@@ -493,16 +514,9 @@ export default function PortfolioDevX() {
                   className="absolute -inset-1 rounded-3xl opacity-0 dark:opacity-100 bg-[radial-gradient(70%_60%_at_100%_0%,rgba(110,231,183,0.12),transparent)]"
                 />
                 <div className="relative">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="font-semibold text-lg">{project.name}</h3>
-                      <p className="text-sm text-mist mt-1">{project.summary}</p>
-                    </div>
-                    {project.period && (
-                      <span className="text-xs text-mist whitespace-nowrap">
-                        {project.period}
-                      </span>
-                    )}
+                  <div>
+                    <h3 className="text-lg font-semibold">{project.name}</h3>
+                    <p className="mt-1 text-sm text-mist">{project.summary}</p>
                   </div>
                   <p className="mt-3 text-sm text-ink/80 dark:text-paper/80">
                     {project.description}
@@ -535,21 +549,21 @@ export default function PortfolioDevX() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="rounded-3xl border border-line bg-white p-6 md:p-8 dark:bg-card"
+          className="scroll-mt-20 rounded-3xl border border-line bg-white p-5 md:p-8 dark:bg-card"
         >
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Experience</h2>
+          <h2 className="mb-4 text-xl font-bold md:text-2xl">Experience</h2>
           <div className="grid gap-6">
             {data.experience.map((exp) => (
               <div
                 key={`${exp.company}-${exp.period}`}
-                className="rounded-2xl border border-line bg-raised p-5"
+                className="rounded-2xl border border-line bg-raised p-4 sm:p-5"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-semibold">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                  <h3 className="min-w-0 font-semibold">
                     {exp.role}{" "}
                     <span className="text-mist">@ {exp.company}</span>
                   </h3>
-                  <span className="text-xs text-mist whitespace-nowrap">
+                  <span className="shrink-0 text-xs text-mist">
                     {exp.period}
                   </span>
                 </div>
@@ -570,9 +584,9 @@ export default function PortfolioDevX() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="rounded-3xl border border-line bg-white p-6 md:p-8 dark:bg-card"
+          className="scroll-mt-20 rounded-3xl border border-line bg-white p-5 md:p-8 dark:bg-card"
         >
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Education</h2>
+          <h2 className="mb-4 text-xl font-bold md:text-2xl">Education</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {data.education.map((ed) => (
               <div
@@ -597,15 +611,15 @@ export default function PortfolioDevX() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="rounded-3xl border border-line bg-white p-6 md:p-8 dark:bg-card"
+          className="scroll-mt-20 rounded-3xl border border-line bg-white p-5 md:p-8 dark:bg-card"
         >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h2 className="text-xl md:text-2xl font-bold">Get in touch</h2>
-              <p className="text-mist mt-1">{data.lookingFor}</p>
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
+              <h2 className="text-xl font-bold md:text-2xl">Get in touch</h2>
+              <p className="mt-1 text-mist">{data.lookingFor}</p>
               <div className="mt-3 text-sm">
                 <a
-                  className="underline decoration-mint hover:text-mint-dim dark:hover:text-mint"
+                  className="break-all underline decoration-mint hover:text-mint-dim dark:hover:text-mint"
                   href={`mailto:${data.email}`}
                 >
                   {data.email}
@@ -647,31 +661,29 @@ export default function PortfolioDevX() {
         </motion.section>
       </main>
 
-      <footer className="mx-auto max-w-6xl border-t border-line px-4 py-8 pb-24 text-xs text-mist md:pb-8">
+      <footer className="mx-auto max-w-6xl border-t border-line px-4 py-8 pb-28 text-xs text-mist md:pb-8">
         © {new Date().getFullYear()} {data.name}. Design and architecture, same
         job.
       </footer>
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
-        <div className="no-scrollbar pointer-events-auto mx-auto flex max-w-full items-center justify-between gap-0.5 overflow-x-auto rounded-full border border-line bg-paper/90 px-1.5 py-1.5 text-ink backdrop-blur dark:bg-ink/80 dark:text-paper">
-          {SECTION_IDS.map((id) => (
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur dark:bg-ink/90 md:hidden">
+        <div className="grid grid-cols-6 px-1 pt-1">
+          {MOBILE_NAV.map(({ id, label: navLabel, Icon }) => (
             <button
               key={id}
+              type="button"
               onClick={() => smoothScrollTo(id)}
-              className={`shrink-0 whitespace-nowrap rounded-full px-2 py-1 text-[11px] ${
+              className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-lg text-[10px] ${
                 activeId === id
-                  ? "bg-mint/20 text-mint-dim dark:text-mint"
-                  : "text-inherit"
+                  ? "text-mint-dim dark:text-mint"
+                  : "text-mist"
               }`}
+              aria-current={activeId === id ? "true" : undefined}
             >
-              {id === "experience"
-                ? "Exp"
-                : id === "education"
-                  ? "Edu"
-                  : label(id)}
+              <Icon size={16} />
+              {navLabel}
             </button>
           ))}
-          <ThemeToggleButton theme={theme} onToggle={toggle} />
         </div>
       </div>
     </div>
