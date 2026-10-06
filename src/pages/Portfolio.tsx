@@ -131,8 +131,8 @@ const label = (id: string) =>
 function ResumeButton({ className }: { className: string }) {
   return (
     <a
-      href="/resume-en.pdf?v=devmail"
-      download="CV_Mohamed_Ali_Trabelsi_EN.pdf"
+      href="/Mohamed_Ali_Trabelsi_Resume.pdf?v=updated"
+      download="Mohamed_Ali_Trabelsi_Resume.pdf"
       className={className}
     >
       <Download size={18} /> Resume
