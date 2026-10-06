@@ -25,7 +25,7 @@ export const portfolioData = {
   title: "Fullstack Engineer",
   tagline: "I design product interfaces and the systems behind them.",
   location: "Tunis, Tunisia",
-  email: "trabelsi.mohamedali@esprit.tn",
+  email: "trabelsi.mohamedali.dev@gmail.com",
   phone: "+216 28 751 504",
   socials: {
     github: "https://github.com/MohamedAliTrabelsiSE",

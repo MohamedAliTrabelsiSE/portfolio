@@ -128,73 +128,15 @@ const label = (id: string) =>
     contact: "Contact",
   })[id] ?? id;
 
-function ResumeButton({
-  className,
-  dropUp = false,
-}: {
-  className: string;
-  dropUp?: boolean;
-}) {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    const onClick = (event: Event) => {
-      const target = event.target as HTMLElement | null;
-      if (!target?.closest("[data-resume-chooser]")) setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onClick);
-    document.addEventListener("touchstart", onClick);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-      document.removeEventListener("touchstart", onClick);
-    };
-  }, [open]);
-
+function ResumeButton({ className }: { className: string }) {
   return (
-    <div className="relative w-full sm:w-auto" data-resume-chooser>
-      <button
-        type="button"
-        onClick={() => setOpen((value) => !value)}
-        className={className}
-        aria-expanded={open}
-        aria-haspopup="menu"
-      >
-        <Download size={18} /> Resume
-      </button>
-      {open && (
-        <div
-          role="menu"
-          className={`absolute right-0 z-20 min-w-[11rem] rounded-xl border border-line bg-white p-1 shadow-xl dark:bg-card md:left-0 md:right-auto ${
-            dropUp ? "bottom-full mb-2" : "mt-2"
-          }`}
-        >
-          <a
-            role="menuitem"
-            href="/resume-en.pdf?v=real"
-            download="CV_Mohamed_Ali_Trabelsi_EN.pdf"
-            className="block rounded-lg px-3 py-2 text-sm hover:bg-raised"
-            onClick={() => setOpen(false)}
-          >
-            English
-          </a>
-          <a
-            role="menuitem"
-            href="/resume-fr.pdf?v=real"
-            download="CV_Mohamed_Ali_Trabelsi_FR.pdf"
-            className="block rounded-lg px-3 py-2 text-sm hover:bg-raised"
-            onClick={() => setOpen(false)}
-          >
-            Français
-          </a>
-        </div>
-      )}
-    </div>
+    <a
+      href="/resume-en.pdf?v=devmail"
+      download="CV_Mohamed_Ali_Trabelsi_EN.pdf"
+      className={className}
+    >
+      <Download size={18} /> Resume
+    </a>
   );
 }
 
@@ -647,7 +589,6 @@ export default function PortfolioDevX() {
                 <Linkedin size={18} /> LinkedIn
               </a>
               <ResumeButton
-                dropUp
                 className="inline-flex items-center gap-2 rounded-xl bg-ink text-paper px-4 py-2 text-sm font-semibold hover:opacity-90 dark:bg-paper dark:text-ink"
               />
               <a
