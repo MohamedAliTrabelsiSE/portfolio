@@ -13,6 +13,7 @@ export type Project = {
   description: string
   stack: string[]
   highlights: string[]
+  url?: string
 }
 
 export type SkillGroup = {
@@ -47,6 +48,7 @@ export const portfolioData = {
       bullets: [
         "Designed and developed backend services and REST APIs using NestJS and TypeScript for web and mobile application modules.",
         "Built full-stack features across React Native applications and backend services, integrating PostgreSQL and MongoDB.",
+        "Work with the team lead as the only two engineers on the backend, handling a high volume of tickets.",
         "Improved API and application performance, reducing response times by 35%.",
         "Contributed to application architecture, testing, CI/CD and production deployment across multiple projects.",
       ],
@@ -99,6 +101,27 @@ export const portfolioData = {
   ],
 
   projects: [
+    {
+      name: "Realtime voice agent",
+      summary: "AI voice receptionist. Speech-to-speech booking over WebSocket.",
+      description:
+        "NestJS backend that streams microphone audio to the OpenAI Realtime API. The model books, finds, and cancels appointments through typed tools. Mock mode runs the full stack offline without an API key.",
+      url: "https://github.com/MohamedAliTrabelsiSE/realtime-voice-agent",
+      stack: [
+        "NestJS",
+        "TypeScript",
+        "OpenAI Realtime",
+        "WebSocket",
+        "Zod",
+        "Jest",
+        "Docker",
+      ],
+      highlights: [
+        "Low-latency speech-to-speech loop with barge-in",
+        "Function calling with Zod schemas and structured errors",
+        "Session tokens, browser test lab, CI, and e2e tests",
+      ],
+    },
     {
       name: "Smart delivery mobile app",
       summary: "Logistics SaaS: three roles, live tracking, AI voice assistant.",
