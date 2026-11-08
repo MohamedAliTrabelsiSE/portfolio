@@ -123,6 +123,27 @@ export const portfolioData = {
       ],
     },
     {
+      name: "Delivery route tracker",
+      summary: "Courier map on a phone. Live tracking, no Google Maps key.",
+      description:
+        "Expo app and NestJS API for a driver tour and a customer tracking code. Routing and geocoding use OSRM and Nominatim on OpenStreetMap. A WebSocket stream moves the driver, updates the ETA, and redraws the road still left.",
+      url: "https://github.com/MohamedAliTrabelsiSE/delivery-route-tracker",
+      stack: [
+        "NestJS",
+        "Expo",
+        "React Native",
+        "TypeScript",
+        "WebSocket",
+        "OSRM",
+        "OpenStreetMap",
+      ],
+      highlights: [
+        "Live tracking with ETA, geofences, and turn-by-turn",
+        "Route optimize, reverse, and recalculate on the driver tour",
+        "Shared geo package, mock providers, and Playwright e2e",
+      ],
+    },
+    {
       name: "Smart delivery mobile app",
       summary: "Logistics SaaS: three roles, live tracking, AI voice assistant.",
       description:
