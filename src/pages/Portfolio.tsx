@@ -303,7 +303,7 @@ export default function PortfolioDevX() {
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {["Product UI", "APIs", "Distributed systems", "Delivery"].map(
+                {["REST APIs", "Microservices", "Real-time", "LLM integrations"].map(
                   (chip) => (
                     <Pill key={chip}>{chip}</Pill>
                   )
@@ -627,8 +627,8 @@ export default function PortfolioDevX() {
       </main>
 
       <footer className="mx-auto max-w-6xl border-t border-line px-4 py-8 pb-28 text-xs text-mist md:pb-8">
-        © {new Date().getFullYear()} {data.name}. Design and architecture, same
-        job.
+        © {new Date().getFullYear()} {data.name}. Looking for a backend role in
+        Europe.
       </footer>
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur dark:bg-ink/90 md:hidden">

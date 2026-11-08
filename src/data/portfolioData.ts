@@ -24,8 +24,9 @@ export type SkillGroup = {
 
 export const portfolioData = {
   name: "Mohamed Ali Trabelsi",
-  title: "Fullstack Engineer",
-  tagline: "I design product interfaces and the systems behind them.",
+  title: "Backend Engineer",
+  tagline:
+    "I build REST APIs and services on PostgreSQL and MongoDB for web and mobile products.",
   location: "Tunis, Tunisia",
   email: "trabelsi.mohamedali.dev@gmail.com",
   phone: "+216 28 751 504",
@@ -35,53 +36,43 @@ export const portfolioData = {
   },
 
   profile:
-    "Fullstack engineer working on production web, mobile, and APIs. I treat UI as a system: tokens, composition, loading and error states. The backend gets the same bar: gateway, IAM, services, queues, then data. Models sit on the queue as workers, with auth at the edge, timeouts, and fallbacks. I ship through CI, not from a laptop: PR checks, image, recette, then prod.",
+    "Backend engineer with two years in industry, working mostly in TypeScript and NestJS. I build REST APIs and services on PostgreSQL and MongoDB for web and mobile products. I have also worked with RabbitMQ microservices, real-time features and LLM integrations.",
 
-  lookingFor:
-    "Fullstack seats where design and architecture are the same job.",
+  lookingFor: "Looking for a backend role in Europe.",
 
   experience: [
     {
-      role: "Full Stack Engineer",
+      role: "Full-Stack Engineer",
       company: "IT Strategix",
       period: "Sep 2024 – present",
       location: "Tunis, Tunisia",
       bullets: [
-        "Designed and developed backend services and REST APIs using NestJS and TypeScript for web and mobile application modules.",
-        "Built full-stack features across React Native applications and backend services, integrating PostgreSQL and MongoDB.",
-        "Work with the team lead as the only two engineers on the backend, handling a high volume of tickets.",
-        "Improved API and application performance, reducing response times by 35%.",
-        "Contributed to application architecture, testing, CI/CD and production deployment across multiple projects.",
+        "Build and maintain REST APIs and backend services in NestJS and TypeScript for web and mobile products, on PostgreSQL and MongoDB.",
+        "Cut API response times by 35%.",
+        "One of two backend engineers on the team, with the team lead. I deliver 2–3 tickets a day, depending on complexity, in 2–3 week sprints.",
+        "Take part in architecture decisions and production deployments across several client projects (details confidential).",
+        "Write Jest tests and maintain CI/CD pipelines in GitHub Actions.",
+        "Build features on the React Native (Expo) apps that use these APIs.",
       ],
     },
     {
-      role: "Full Stack Developer Intern",
+      role: "Full-Stack Developer Intern",
       company: "NAXXUM GROUP",
-      period: "Jun 2025 – Jul 2025",
+      period: "Jul – Aug 2024 and Jun – Jul 2025",
       location: "Tunis, Tunisia",
       bullets: [
-        "Optimized an educational platform using Node.js, Express, React and MongoDB.",
-        "Enhanced recommendation features through AI-powered suggestions.",
-      ],
-    },
-    {
-      role: "Full Stack Developer Intern",
-      company: "NAXXUM GROUP",
-      period: "Jul 2024 – Aug 2024",
-      location: "Tunis, Tunisia",
-      bullets: [
-        "Built and maintained features for an online teaching platform with React, Node.js, Express and MongoDB.",
-        "Implemented real-time student monitoring and strengthened application reliability.",
+        "Built backend services and responsive interfaces for an online teaching platform, including real-time student monitoring.",
+        "Worked on backend scalability and frontend performance of an educational platform, and added AI-powered recommendations.",
       ],
     },
     {
       role: "End-of-Studies Intern",
       company: "SIGA",
-      period: "Feb 2023 – Jun 2023",
+      period: "Feb – Jun 2023",
       location: "Tunis, Tunisia",
       bullets: [
-        "Designed and developed a task-tracking web application using Spring Boot, Angular and PostgreSQL.",
-        "Built REST APIs and user management modules that improved internal coordination.",
+        "Built a task-tracking web application with Spring Boot, Angular and PostgreSQL.",
+        "Wrote the REST APIs and the user management module used by internal teams.",
       ],
     },
   ] satisfies Experience[],
@@ -96,7 +87,7 @@ export const portfolioData = {
     {
       school: "Faculty of Sciences of Tunis (FST)",
       degree: "Bachelor Degree in Computer Science",
-      period: "Sep 2020 – Jun 2023",
+      period: "2020 – 2023",
       location: "Tunis, Tunisia",
     },
   ],
@@ -125,7 +116,7 @@ export const portfolioData = {
     },
     {
       name: "Delivery route tracker",
-      summary: "Courier map on a phone. Live tracking, no Google Maps key.",
+      summary: "Courier map on a phone with live tracking and no Google Maps key.",
       description:
         "Expo app and NestJS API for a driver tour and a customer tracking code. Routing and geocoding use OSRM and Nominatim on OpenStreetMap. A WebSocket stream moves the driver, updates the ETA, and redraws the road still left.",
       url: "https://github.com/MohamedAliTrabelsiSE/delivery-route-tracker",
@@ -145,10 +136,10 @@ export const portfolioData = {
       ],
     },
     {
-      name: "Smart delivery mobile app",
-      summary: "Logistics SaaS: three roles, live tracking, AI voice assistant.",
+      name: "Smart delivery mobile app (CONFIRMIA)",
+      summary: "Capstone, pre-production, confidential. Logistics app with three roles, live tracking and an AI voice assistant.",
       description:
-        "Cross-platform delivery product on microservices. One codebase for the three roles, real-time tracking and QR-code handover. A voice assistant in Tunisian Darija sits behind the API. Shipped with DigitalOcean and Expo EAS.",
+        "Microservices backend in NestJS. Services talk through RabbitMQ; data is in Supabase and MongoDB. Deployed to pre-production on DigitalOcean; mobile builds with Expo EAS.",
       stack: [
         "NestJS",
         "React Native",
@@ -162,39 +153,8 @@ export const portfolioData = {
       ],
       highlights: [
         "Three roles in a single React Native / Expo codebase",
-        "Real-time tracking and QR-code delivery",
-        "Darija voice assistant on the OpenAI Realtime model",
-      ],
-    },
-    {
-      name: "AI-powered education platform",
-      summary: "Mobile tutoring. LLaMA matches students with teachers.",
-      description:
-        "Expo and NestJS education app on PostgreSQL. LLaMA personalizes tutoring and matches learners with teachers from their needs. The model stays behind the API.",
-      stack: [
-        "Expo",
-        "React Native",
-        "NestJS",
-        "PostgreSQL",
-        "TypeScript",
-        "LLaMA",
-      ],
-      highlights: [
-        "Personalized tutoring flows",
-        "Automatic student–teacher matching",
-        "Mobile client on Expo, API on NestJS",
-      ],
-    },
-    {
-      name: "AI-powered fitness coaching app",
-      summary: "Beginner iOS coach. Gemini and Mistral sit behind the API.",
-      description:
-        "Swift client, NestJS API, MongoDB. Models generate training programs from user goals. The interesting part is treating the model as a feature behind the service, not as the product.",
-      stack: ["Swift", "NestJS", "MongoDB", "Gemini", "Mistral AI"],
-      highlights: [
-        "Custom training plans from user goals",
-        "Gemini and Mistral isolated in the API",
-        "Beginner-friendly mobile interface",
+        "Real-time tracking with Google Maps and QR-code delivery confirmation",
+        "Voice assistant in Tunisian Arabic (Darija) on the OpenAI Realtime model",
       ],
     },
     {
@@ -217,46 +177,79 @@ export const portfolioData = {
         "JWT sessions, email verification, password reset, and TOTP 2FA",
       ],
     },
+    {
+      name: "AI-powered education platform",
+      summary: "Mobile tutoring app where LLaMA matches students with teachers.",
+      description:
+        "Expo app and NestJS API on PostgreSQL. LLaMA personalizes tutoring and matches learners with teachers from their needs; the model stays behind the API.",
+      stack: [
+        "Expo",
+        "React Native",
+        "NestJS",
+        "PostgreSQL",
+        "TypeScript",
+        "LLaMA",
+      ],
+      highlights: [
+        "Personalized tutoring flows",
+        "Automatic student–teacher matching",
+        "Mobile client on Expo, API on NestJS",
+      ],
+    },
+    {
+      name: "AI-powered fitness coaching app",
+      summary: "Beginner iOS coach with Gemini and Mistral behind the API.",
+      description:
+        "Swift client, NestJS API and MongoDB. Gemini and Mistral generate training programs from user goals and are isolated in the API.",
+      stack: ["Swift", "NestJS", "MongoDB", "Gemini", "Mistral AI"],
+      highlights: [
+        "Custom training plans from user goals",
+        "Gemini and Mistral isolated in the API",
+        "Beginner-friendly mobile interface",
+      ],
+    },
   ] satisfies Project[],
 
   skillGroups: [
     {
-      title: "Interface",
+      title: "Backend",
       skills: [
         "TypeScript",
+        "NestJS",
+        "Node.js",
+        "Express",
+        "REST APIs",
+        "Microservices",
+        "RabbitMQ",
+        "WebSocket",
+        "JWT",
+      ],
+    },
+    {
+      title: "Frontend and mobile",
+      skills: [
         "React",
         "React Native",
         "Expo",
         "Next.js",
-        "Swift",
-        "Design systems",
-      ],
-    },
-    {
-      title: "Platform",
-      skills: [
-        "NestJS",
-        "Node.js",
-        "Java",
-        "REST",
-        "API gateway",
-        "IAM",
-        "RabbitMQ",
+        "Tailwind CSS",
+        "Angular",
       ],
     },
     {
       title: "Data",
-      skills: ["PostgreSQL", "MongoDB", "MySQL", "Firebase", "Repository / migrations"],
+      skills: ["PostgreSQL", "MongoDB", "Supabase"],
     },
     {
-      title: "Delivery",
+      title: "DevOps and testing",
       skills: [
         "Docker",
         "GitHub Actions",
+        "CI/CD",
+        "DigitalOcean",
+        "Vercel",
+        "Jest",
         "Playwright",
-        "Recette → prod",
-        "Git",
-        "Agile",
       ],
     },
   ] satisfies SkillGroup[],
@@ -270,7 +263,7 @@ export const portfolioData = {
   community: [
     "Tunisian Red Crescent",
     "Engineers Spark FST",
-    "IEEE SC Chapter, FST Student Branch",
-    "Hult Prize Tunisia",
+    "IEEE Student Branch, FST",
+    "Hult Prize, ESSEC Tunis",
   ],
 }
