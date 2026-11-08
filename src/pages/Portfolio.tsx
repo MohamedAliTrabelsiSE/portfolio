@@ -459,15 +459,29 @@ export default function PortfolioDevX() {
                   <div>
                     <h3 className="text-lg font-semibold">{project.name}</h3>
                     <p className="mt-1 text-sm text-mist">{project.summary}</p>
-                    {project.url && (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-flex items-center gap-1.5 text-sm text-mint-dim hover:underline dark:text-mint"
-                      >
-                        <Github size={14} /> GitHub
-                      </a>
+                    {(project.url || project.demoUrl) && (
+                      <div className="mt-2 flex flex-wrap gap-3">
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm text-mint-dim hover:underline dark:text-mint"
+                          >
+                            Live demo
+                          </a>
+                        )}
+                        {project.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm text-mint-dim hover:underline dark:text-mint"
+                          >
+                            <Github size={14} /> GitHub
+                          </a>
+                        )}
+                      </div>
                     )}
                   </div>
                   <p className="mt-3 text-sm text-ink/80 dark:text-paper/80">

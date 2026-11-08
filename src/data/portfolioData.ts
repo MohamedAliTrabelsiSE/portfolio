@@ -14,6 +14,7 @@ export type Project = {
   stack: string[]
   highlights: string[]
   url?: string
+  demoUrl?: string
 }
 
 export type SkillGroup = {
@@ -197,15 +198,23 @@ export const portfolioData = {
       ],
     },
     {
-      name: "Travel & social activity platform",
-      summary: "Trips, companions, and shared activities. Full-stack.",
+      name: "GoTogether",
+      summary: "Group travel planner. Groups, trips, expenses, chat, and a community feed.",
       description:
-        "Platform for travelers to organize trips, share activities, find companions, and connect by destination and interests. Angular on the client, NestJS and PostgreSQL behind a REST API.",
-      stack: ["Express", "NestJS", "PostgreSQL", "TypeScript", "REST API"],
+        "Friends create travel groups, plan trips together, split expenses, chat, and share tips in a community feed. The live demo lets you sign in as a sample traveler with no sign-up.",
+      demoUrl: "https://gotogether-green.vercel.app/",
+      stack: [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "MongoDB",
+        "JWT",
+        "Socket.io",
+      ],
       highlights: [
-        "Trip planning and shared activities",
-        "Companion matching by destination and interests",
-        "Full-stack Angular + NestJS",
+        "Groups with invites and roles, trips with itinerary on a map",
+        "Expense splitting, group and trip chat, community posts",
+        "JWT sessions, email verification, password reset, and TOTP 2FA",
       ],
     },
   ] satisfies Project[],
@@ -218,7 +227,7 @@ export const portfolioData = {
         "React",
         "React Native",
         "Expo",
-        "Express",
+        "Next.js",
         "Swift",
         "Design systems",
       ],
