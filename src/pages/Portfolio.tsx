@@ -15,7 +15,10 @@ import {
   FolderKanban,
   Briefcase,
   GraduationCap,
+  ExternalLink,
+  Clock,
 } from "lucide-react";
+import type { Project } from "../data/portfolioData";
 import { motion } from "framer-motion";
 
 function useTheme() {
@@ -145,6 +148,94 @@ function Pill({ children }: { children: React.ReactNode }) {
     <span className="px-3 py-1 text-xs rounded-full border border-line bg-raised text-ink dark:text-paper">
       {children}
     </span>
+  );
+}
+
+function ProjectCard({
+  project,
+  compact = false,
+}: {
+  project: Project;
+  compact?: boolean;
+}) {
+  return (
+    <article className="relative overflow-hidden rounded-3xl border border-line bg-white dark:bg-card">
+      <div
+        aria-hidden
+        className="absolute -inset-1 rounded-3xl bg-[radial-gradient(70%_60%_at_100%_0%,rgba(110,231,183,0.12),transparent)] opacity-0 dark:opacity-100"
+      />
+      {project.image && !compact && (
+        <div className="relative h-52 overflow-hidden border-b border-line bg-[#0f141b] sm:h-60">
+          <img
+            src={project.image}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+      )}
+      <div className="relative p-5 sm:p-6">
+        <h3 className="text-lg font-semibold">{project.name}</h3>
+        <p className="mt-1 text-sm text-mist">{project.summary}</p>
+        {(project.url || project.demoUrl || project.demoComingSoon) && (
+          <div className="mt-2 flex flex-wrap gap-3">
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-mint-dim hover:underline dark:text-mint"
+              >
+                {project.demoUrl.includes("lnkd.in") ||
+                project.demoUrl.includes("linkedin.com") ? (
+                  <Linkedin size={14} />
+                ) : (
+                  <ExternalLink size={14} />
+                )}
+                {project.demoLabel ?? "Live demo"}
+              </a>
+            )}
+            {project.demoComingSoon && (
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-mist">
+                <Clock size={14} /> Demo coming soon
+              </span>
+            )}
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-mint-dim hover:underline dark:text-mint"
+              >
+                <Github size={14} /> GitHub
+              </a>
+            )}
+          </div>
+        )}
+        {!compact && (
+          <>
+            <p className="mt-3 text-sm text-ink/80 dark:text-paper/80">
+              {project.description}
+            </p>
+            <ul className="mt-4 space-y-1.5 text-sm text-ink/80 dark:text-paper/80">
+              {project.highlights.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <ArrowRight
+                    size={14}
+                    className="mt-1 shrink-0 text-mint-dim dark:text-mint"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <Pill key={tech}>{tech}</Pill>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -286,17 +377,14 @@ export default function PortfolioDevX() {
             <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-mint hidden md:block" />
             <div className="order-2 flex min-w-0 flex-col justify-center md:order-1 md:pl-4">
               <p className="text-[11px] uppercase tracking-[0.22em] text-mint-dim dark:text-mint font-semibold">
-                {data.title}
+                {data.title} · NestJS · 2 years
               </p>
               <h1 className="mt-2 text-[1.7rem] font-extrabold leading-tight sm:text-3xl md:text-5xl">
-                Nice to meet you, I&apos;m{" "}
-                <span className="text-ink dark:text-white">
-                  {data.name.split(" ").slice(0, 2).join(" ")}
-                </span>
+                {data.name}
               </h1>
               <p className="mt-3 text-mist max-w-prose">{data.tagline}</p>
               <p className="mt-2 text-sm text-mist inline-flex items-center gap-1">
-                <MapPin size={14} /> {data.location}
+                <MapPin size={14} /> {data.location} · {data.availability}
               </p>
               <p className="mt-4 hidden max-w-2xl text-ink/80 dark:text-paper/80 md:block">
                 {data.profile}
@@ -312,6 +400,19 @@ export default function PortfolioDevX() {
 
               <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
                 <a
+                  href={`mailto:${data.email}`}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-mint px-3 py-2 text-sm font-semibold text-ink hover:opacity-90 sm:px-4"
+                >
+                  <Mail size={18} /> Email me
+                </a>
+                <ResumeButton className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-paper hover:opacity-90 dark:bg-paper dark:text-ink sm:w-auto sm:px-4" />
+                <button
+                  onClick={() => smoothScrollTo("work")}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-raised px-3 py-2 text-sm hover:border-mint/40 sm:px-4"
+                >
+                  <ChevronDown size={18} /> View work
+                </button>
+                <a
                   href={data.socials.github}
                   target="_blank"
                   rel="noreferrer"
@@ -319,21 +420,6 @@ export default function PortfolioDevX() {
                 >
                   <Github size={18} /> GitHub
                 </a>
-                <a
-                  href={data.socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-raised px-3 py-2 text-sm hover:border-mint/40 sm:px-4"
-                >
-                  <Linkedin size={18} /> LinkedIn
-                </a>
-                <button
-                  onClick={() => smoothScrollTo("work")}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-mint px-3 py-2 text-sm font-semibold text-ink hover:opacity-90 sm:px-4"
-                >
-                  <ChevronDown size={18} /> View work
-                </button>
-                <ResumeButton className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-paper hover:opacity-90 dark:bg-paper dark:text-ink sm:w-auto sm:px-4" />
               </div>
             </div>
 
@@ -347,6 +433,19 @@ export default function PortfolioDevX() {
               </div>
             </div>
           </motion.section>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {data.metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-2xl border border-line bg-white px-4 py-3 dark:bg-card"
+              >
+                <div className="text-lg font-bold text-mint-dim dark:text-mint">
+                  {metric.value}
+                </div>
+                <div className="text-sm text-mist">{metric.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
 
@@ -363,7 +462,9 @@ export default function PortfolioDevX() {
           <p className="text-ink/80 dark:text-paper/80 max-w-3xl">
             {data.profile}
           </p>
-          <p className="mt-4 text-sm text-mist">{data.lookingFor}</p>
+          <p className="mt-4 text-sm text-mist">
+            {data.lookingFor} {data.availability}.
+          </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {data.languages.map((lang) => (
               <Pill key={lang.label}>
@@ -445,68 +546,33 @@ export default function PortfolioDevX() {
           className="scroll-mt-20"
         >
           <h2 className="mb-2 text-xl font-bold md:text-2xl">Projects</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {data.projects.map((project) => (
-              <article
-                key={project.name}
-                className="relative rounded-3xl border border-line bg-white p-6 overflow-hidden dark:bg-card"
-              >
-                <div
-                  aria-hidden
-                  className="absolute -inset-1 rounded-3xl opacity-0 dark:opacity-100 bg-[radial-gradient(70%_60%_at_100%_0%,rgba(110,231,183,0.12),transparent)]"
-                />
-                <div className="relative">
-                  <div>
-                    <h3 className="text-lg font-semibold">{project.name}</h3>
-                    <p className="mt-1 text-sm text-mist">{project.summary}</p>
-                    {(project.url || project.demoUrl) && (
-                      <div className="mt-2 flex flex-wrap gap-3">
-                        {project.demoUrl && (
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm text-mint-dim hover:underline dark:text-mint"
-                          >
-                            Live demo
-                          </a>
-                        )}
-                        {project.url && (
-                          <a
-                            href={project.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm text-mint-dim hover:underline dark:text-mint"
-                          >
-                            <Github size={14} /> GitHub
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <p className="mt-3 text-sm text-ink/80 dark:text-paper/80">
-                    {project.description}
-                  </p>
-                  <ul className="mt-4 space-y-1.5 text-sm text-ink/80 dark:text-paper/80">
-                    {project.highlights.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <ArrowRight
-                          size={14}
-                          className="mt-1 shrink-0 text-mint-dim dark:text-mint"
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.stack.map((tech) => (
-                      <Pill key={tech}>{tech}</Pill>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+          <p className="mb-6 text-sm text-mist">
+            Public repos and a live demo first. Click through, don&apos;t take
+            my word for it.
+          </p>
+          <div className="grid gap-6 md:grid-cols-2">
+            {data.projects
+              .filter((project) => project.featured)
+              .map((project) => (
+                <ProjectCard key={project.name} project={project} />
+              ))}
           </div>
+          {data.projects.some((project) => !project.featured) && (
+            <>
+              <h3 className="mb-4 mt-10 text-lg font-semibold">Also built</h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                {data.projects
+                  .filter((project) => !project.featured)
+                  .map((project) => (
+                    <ProjectCard
+                      key={project.name}
+                      project={project}
+                      compact
+                    />
+                  ))}
+              </div>
+            </>
+          )}
         </motion.section>
 
         <motion.section

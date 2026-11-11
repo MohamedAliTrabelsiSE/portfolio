@@ -15,6 +15,10 @@ export type Project = {
   highlights: string[]
   url?: string
   demoUrl?: string
+  demoLabel?: string
+  demoComingSoon?: boolean
+  image?: string
+  featured?: boolean
 }
 
 export type SkillGroup = {
@@ -39,6 +43,12 @@ export const portfolioData = {
     "Backend engineer with two years in industry, working mostly in TypeScript and NestJS. I build REST APIs and services on PostgreSQL and MongoDB for web and mobile products. I have also worked with RabbitMQ microservices, real-time features and LLM integrations.",
 
   lookingFor: "Looking for a backend role in Europe.",
+  availability: "Open to relocate in Europe · remote",
+  metrics: [
+    { value: "35%", label: "faster APIs at IT Strategix" },
+    { value: "2–3", label: "tickets a day, two-person backend" },
+    { value: "CI + e2e", label: "voice agent runs without an API key" },
+  ],
 
   experience: [
     {
@@ -98,7 +108,9 @@ export const portfolioData = {
       summary: "AI voice receptionist. Speech-to-speech booking over WebSocket.",
       description:
         "NestJS backend that streams microphone audio to the OpenAI Realtime API. The model books, finds, and cancels appointments through typed tools. Mock mode runs the full stack offline without an API key.",
+      featured: true,
       url: "https://github.com/MohamedAliTrabelsiSE/realtime-voice-agent",
+      image: "/projects/voice-cover.png",
       stack: [
         "NestJS",
         "TypeScript",
@@ -119,7 +131,9 @@ export const portfolioData = {
       summary: "Courier map on a phone with live tracking and no Google Maps key.",
       description:
         "Expo app and NestJS API for a driver tour and a customer tracking code. Routing and geocoding use OSRM and Nominatim on OpenStreetMap. A WebSocket stream moves the driver, updates the ETA, and redraws the road still left.",
+      featured: true,
       url: "https://github.com/MohamedAliTrabelsiSE/delivery-route-tracker",
+      image: "/projects/tracker-cover.png",
       stack: [
         "NestJS",
         "Expo",
@@ -136,7 +150,9 @@ export const portfolioData = {
       ],
     },
     {
+      featured: true,
       name: "Smart delivery mobile app (CONFIRMIA)",
+      demoComingSoon: true,
       summary: "Capstone, pre-production, confidential. Logistics app with three roles, live tracking and an AI voice assistant.",
       description:
         "Microservices backend in NestJS. Services talk through RabbitMQ; data is in Supabase and MongoDB. Deployed to pre-production on DigitalOcean; mobile builds with Expo EAS.",
@@ -158,11 +174,13 @@ export const portfolioData = {
       ],
     },
     {
+      featured: true,
       name: "GoTogether",
       summary: "Group travel planner. Groups, trips, expenses, chat, and a community feed.",
       description:
         "Friends create travel groups, plan trips together, split expenses, chat, and share tips in a community feed. The live demo lets you sign in as a sample traveler with no sign-up.",
       demoUrl: "https://gotogether-green.vercel.app/",
+      image: "/projects/gotogether-cover.png",
       stack: [
         "Next.js",
         "React",
@@ -179,6 +197,8 @@ export const portfolioData = {
     },
     {
       name: "AI-powered education platform",
+      demoUrl: "https://lnkd.in/p/dzaUgJsP",
+      demoLabel: "Demo on LinkedIn",
       summary: "Mobile tutoring app where LLaMA matches students with teachers.",
       description:
         "Expo app and NestJS API on PostgreSQL. LLaMA personalizes tutoring and matches learners with teachers from their needs; the model stays behind the API.",
@@ -197,7 +217,7 @@ export const portfolioData = {
       ],
     },
     {
-      name: "AI-powered fitness coaching app",
+      name: "AI-powered fitness coaching app (GainUP)",
       summary: "Beginner iOS coach with Gemini and Mistral behind the API.",
       description:
         "Swift client, NestJS API and MongoDB. Gemini and Mistral generate training programs from user goals and are isolated in the API.",
